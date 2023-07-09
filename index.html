@@ -99,6 +99,15 @@
             }
         });
 
+        height.addEventListener('input', updateBMI);
+        weight.addEventListener('input', updateBMI);
+
+        function updateBMI() {
+            let heightVal = height.value;
+            let weightVal = weight.value;
+
+            displayBMI.innerHTML = 'Height: (' + heightVal + ') meters <br> Weight: (' + weightVal + ') kilograms';
+        }
         
     </script>
 
