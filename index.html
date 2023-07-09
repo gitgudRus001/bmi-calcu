@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI CALCULATOR</title>
+
+    
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&family=Work+Sans&display=swap');
+
+    body {
+        font-family: 'Poppins';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+    .container {
+        /* background-color: red; */
+        padding: 1em;
+        text-align: center;
+    }
+    .calc-input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5em;
+
+
+        flex-direction: column;
+    }
+    input {
+        padding: 1em;
+        outline: none;
+        border: 0;
+        border-bottom: 1px solid green;
+    }
+    button {
+        padding: 1em;
+        margin: 10px 0 0 0;
+        border: 0;
+        background-color: rgb(67, 174, 67);
+        color: white;
+        width: 100px;
+    }
+
+    p {
+        margin-top: 50px;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        
+        <div class="calc-input">
+            <input type="number" id="height-val" placeholder="Height in meters">
+            <input type="number" id="weight-val" placeholder="Weight in kilograms">
+
+            <button class="submit">Calculate</button>
+        </div>
+
+        <p class="display-bmi"></p>
+    </div>
+
+    <script>    
+        let height = document.getElementById('height-val');
+        let weight = document.getElementById('weight-val');
+        let submitBTN = document.querySelector('.submit');
+        let displayBMI = document.querySelector('.display-bmi');
+
+        submitBTN.addEventListener('click', () => {
+            let heightVal = height.value;
+            let weightVal = weight.value;
+
+            const BMI = weightVal / Math.pow(heightVal, 2);
+            const roundedBMI = BMI.toFixed(1);
+
+            // displayBMI.textContent = 'Your BMI is: ' + roundedBMI
+
+            height.value = ""
+            weight.value = ""
+
+            if (roundedBMI <= 18.4 ) {
+                displayBMI.textContent = 'Your BMI is: ' + roundedBMI + ' (underweight)'
+            } else if (roundedBMI >= 18.5 && roundedBMI <= 24.9) {
+                displayBMI.textContent = 'Your BMI is: ' + roundedBMI + ' (normal)'
+            } else if (roundedBMI >= 25.0 && roundedBMI <= 39.9) {
+                displayBMI.textContent = 'Your BMI is: ' + roundedBMI + ' (overweight)'
+            } else if (roundedBMI >= 40.0) {
+                displayBMI.textContent = 'Your BMI is: ' + roundedBMI + ' (obese)'
+            }
+        });
+
+        
+    </script>
+
+</body>
+</html>
